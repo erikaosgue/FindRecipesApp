@@ -11,6 +11,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.erikaosgue.recipesapp.R
 import com.erikaosgue.recipesapp.ShowLinkActivity
 import com.erikaosgue.recipesapp.model.Recipe
@@ -39,7 +41,8 @@ class RecipeAdapter(private val context: Context, private val listRecipes: Array
             ingredientsRecipe.text = recipe.ingredients
 
             //Adding the image using the Picasso Library
-            if (recipe.image != "") {
+            if (recipe.image.isNotEmpty()) {
+                Log.d("1 **Image is Empty: ==>", "${recipe.image.isEmpty()}")
                 Picasso.get()
                     .load(recipe.image)
                     .placeholder(android.R.drawable.ic_menu_report_image)
@@ -47,9 +50,33 @@ class RecipeAdapter(private val context: Context, private val listRecipes: Array
                     .resize(600, 500)
                     .into(imageRecipe)
             } else {
+                Log.d("2 ==Image is Empty: ==>", "${recipe.image.isEmpty()}")
                 Picasso.get()
-                    .load(R.mipmap.ic_launcher).into(imageRecipe)
+                    .load(android.R.drawable.ic_menu_report_image)
+                    .placeholder(android.R.drawable.ic_menu_report_image)
+                    .error(android.R.drawable.ic_menu_report_image)
+                    .resize(600, 500)
+                    .into(imageRecipe)
+
             }
+
+
+            //Using Glide to load the Picture
+            /*
+            val requestOptions = RequestOptions()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+
+            // myViewLayout id the context of the view that will
+            // contain the image
+            Glide.with(context)
+                .applyDefaultRequestOptions(requestOptions)
+                .load(recipe.image)
+                .into(imageRecipe)
+
+             */
+
+
 
             moreInfoButton.setOnClickListener {
                 val intent = Intent(context, ShowLinkActivity::class.java)

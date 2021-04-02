@@ -92,11 +92,18 @@ class RecipeList : AppCompatActivity() {
 //                    recyclerView?.adapter = adapter
                 }
 //                adapter?.notifyDataSetChanged()
-
                 Log.d("Recipe List==>", "$recipeList")
-                adapter = RecipeAdapter(this, recipeList!!)
-                recyclerView?.layoutManager = LinearLayoutManager(this)
-                recyclerView?.adapter = adapter
+                if (recipeList!!.size > 0) {
+                    Log.d("Recipe List==>", "$recipeList")
+                    adapter = RecipeAdapter(this, recipeList!!)
+                    recyclerView?.layoutManager = LinearLayoutManager(this)
+                    recyclerView?.adapter = adapter
+
+                }
+                else {
+                    Toast.makeText(this, "We can't find recipes con that information\nAdd different data!", Toast.LENGTH_LONG).show()
+                    super.onBackPressed()
+                }
             },
 
             { error: VolleyError ->

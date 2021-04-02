@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
+
+        <domain includeSubdomains="true">img.recipepuppy.com</domain>
+        <domain includeSubdomains="true">recipezaar.com</domain>
         <domain includeSubdomains="true">allrecipes.com</domain>
         <domain includeSubdomains="true">www.recipepuppy.com</domain>
     </domain-config>

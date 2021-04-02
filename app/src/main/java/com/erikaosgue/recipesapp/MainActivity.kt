@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 		var parameters = ""
 		if (ingredients.isNotEmpty() && searchTerm.isNotEmpty()) {
 			if (searchTerm.matches("^[a-zA-Z]*$".toRegex()) && ingredients.matches("^[a-zA-Z]*$".toRegex()))
-					parameters = "?i=$ingredients&?q=$searchTerm"
+					parameters = "?i=$ingredients&q=$searchTerm"
 			else {
 				Toast.makeText(this, "Enter only Alpha chars", Toast.LENGTH_LONG).show()
 			}
