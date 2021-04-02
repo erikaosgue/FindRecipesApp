@@ -1,0 +1,9 @@
+<resources>
+  <string name="app_name">RecipesApp</string>
+  <string name="what_would_you_like_to_make">What would you like to make?</string>
+  <string name="search_term_eg_meatloaf">Search term: eg. Meatloaf ...</string>
+  <string name="ingredients_eg_tomato_onions_sugar">Ingredients: Eg. Tomato, onionsm sugar ...</string>
+  <string name="go">GO!</string>
+  <string name="title_recipe">Title Recipe</string>
+  <string name="description_recipe">Description Recipe</string>
+</resources>

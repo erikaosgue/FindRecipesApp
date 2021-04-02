@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageRecipeId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+
+                tools:srcCompat="@drawable/ic_launcher_background" />
+
+            <TextView
+
+                android:id="@+id/titleRecipeId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/imageRecipeId"
+
+                android:text="@string/title_recipe"
+                android:textStyle="bold"
+                android:textColor="@color/cardview_dark_background"
+
+                />
+
+            <TextView
+                android:id="@+id/ingredientsRecipeId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/titleRecipeId"
+
+                android:textColor="@color/design_default_color_secondary_variant"
+                android:text="@string/description_recipe"
+                />
+
+            <Button
+                android:id="@+id/moreInfoButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:layout_below="@id/ingredientsRecipeId"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+
+                android:background="@android:drawable/ic_dialog_info"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+
+                />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
