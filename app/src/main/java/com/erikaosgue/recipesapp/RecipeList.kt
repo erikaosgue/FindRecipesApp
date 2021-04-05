@@ -20,12 +20,12 @@ import org.json.JSONObject
 
 class RecipeList : AppCompatActivity() {
 
-  var recipeList: ArrayList<Recipe>? = null
-  var adapter: RecipeAdapter? = null
 
   var requestQueue: RequestQueue? = null
-    var mContext: Context? = null
-    private var recyclerView: RecyclerView? = null
+
+  private var recyclerView: RecyclerView? = null
+  var adapter: RecipeAdapter? = null
+  var recipeList: ArrayList<Recipe>? = null
 
     lateinit var activityRecipeListBinding: ActivityRecipeListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +34,11 @@ class RecipeList : AppCompatActivity() {
         setContentView(activityRecipeListBinding.root)
 
 
-        recipeList = ArrayList<Recipe>()
         recyclerView = activityRecipeListBinding.recyclerViewId
+        recipeList = ArrayList()
 
 
-      //make the request and receives a List
+        //make the request and receives a List
         requestQueue = Volley.newRequestQueue(this)
 
         //Receive the information from main Activity
@@ -46,21 +46,9 @@ class RecipeList : AppCompatActivity() {
         val parameters = extras?.get("parameters")
 
         val url = "http://www.recipepuppy.com/api/$parameters"
-        Log.d("Url==>", "$url")
+
 
         getRecipeList(url)
-//        Toast.makeText(this, "List : $recipesList", Toast.LENGTH_LONG).show()
-//        if (recipesList != null) {
-//            val adapter = RecipeAdapter(this, recipesList)
-//            recyclerView = activityRecipeListBinding.recyclerViewId
-//            recyclerView?.layoutManager = LinearLayoutManager(this)
-//            recyclerView?.adapter = adapter
-//
-//        }else {
-//            Toast.makeText(this, "Can't do the recyclerView", Toast.LENGTH_LONG).show()
-//        }
-
-
     }
 
     //Make the request
@@ -87,14 +75,13 @@ class RecipeList : AppCompatActivity() {
                     recipe.link = resultOBJ["href"] as String
                     recipeList?.add(recipe)
 
-//                    adapter = RecipeAdapter(this, recipeList!!)
-//                    recyclerView?.layoutManager = LinearLayoutManager(this)
-//                    recyclerView?.adapter = adapter
+                    //adapter = RecipeAdapter(this, recipeList!!)
+                    //recyclerView?.layoutManager = LinearLayoutManager(this)
+                    //recyclerView?.adapter = adapter
                 }
-//                adapter?.notifyDataSetChanged()
-                Log.d("Recipe List==>", "$recipeList")
+                //adapter?.notifyDataSetChanged()
+
                 if (recipeList!!.size > 0) {
-                    Log.d("Recipe List==>", "$recipeList")
                     adapter = RecipeAdapter(this, recipeList!!)
                     recyclerView?.layoutManager = LinearLayoutManager(this)
                     recyclerView?.adapter = adapter

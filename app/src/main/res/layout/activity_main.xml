@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:importantForAutofill="no"
                 android:hint="@string/ingredients_eg_tomato_onions_sugar"
-                android:inputType="textCapCharacters" />
+                android:inputType="textCapSentences" />
 
             <EditText
                 android:id="@+id/searchTermId"

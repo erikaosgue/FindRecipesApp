@@ -24,8 +24,8 @@ class RecipeAdapter(private val context: Context, private val listRecipes: Array
     // Class viewHolder, that
     inner class RecipeViewHolder(var view: View): RecyclerView.ViewHolder(view) {
 
-        // Instantiating the views from the view (row_list) inflated that will represent our viewHolder
-
+        // Instantiating the views from the view (row_list)
+        // inflated that will represent our viewHolder
         private val titleRecipe = view.findViewById<TextView>(R.id.titleRecipeId)
         private val imageRecipe = view.findViewById<ImageView>(R.id.imageRecipeId)
         private val ingredientsRecipe = view.findViewById<TextView>(R.id.ingredientsRecipeId)
@@ -100,9 +100,6 @@ class RecipeAdapter(private val context: Context, private val listRecipes: Array
     override fun getItemCount(): Int {
         return listRecipes.size
     }
-
-
-
 
 }
 

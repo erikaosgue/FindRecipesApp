@@ -1,5 +1,6 @@
 package com.erikaosgue.recipesapp.model
 
+// Diferrent types of creating the class Recipe
 
 //class Recipe(var title: String, var description: String, var image: String)
 

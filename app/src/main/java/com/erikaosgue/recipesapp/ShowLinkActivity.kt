@@ -9,9 +9,11 @@ import android.widget.Toast
 import com.erikaosgue.recipesapp.databinding.ActivityShowLinkBinding
 
 class ShowLinkActivity : AppCompatActivity() {
-  var oneTime: Int? = null
-  var webView: WebView?= null
-  lateinit var  activityShowLinkBinding: ActivityShowLinkBinding
+
+  var webView: WebView? = null
+
+
+  lateinit var activityShowLinkBinding: ActivityShowLinkBinding
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     activityShowLinkBinding = ActivityShowLinkBinding.inflate(layoutInflater)
@@ -19,11 +21,9 @@ class ShowLinkActivity : AppCompatActivity() {
 
     Toast.makeText(this, "*onCreate", Toast.LENGTH_LONG).show()
 
-    oneTime = 0
-
     // To do:
-    // How to check when the press back button is from the url an makeit go back again
-    // Read the images
+    // How to check when the press back button is from the url and make it go back again
+    // Read all the images http without hardcoding them in security file
 
     val extras = intent.extras
     if (extras != null) {
@@ -31,12 +31,10 @@ class ShowLinkActivity : AppCompatActivity() {
       val link = extras.get("link")
       Log.d("link", "$link")
 
-      webView =  activityShowLinkBinding.webViewId
+      webView = activityShowLinkBinding.webViewId
       webView?.loadUrl(link.toString())
-      oneTime = oneTime?.plus(1)
 
-    }
-    else {
+    } else {
       super.onBackPressed()
       Toast.makeText(this, "this is comming back from website", Toast.LENGTH_LONG).show()
 
@@ -44,12 +42,9 @@ class ShowLinkActivity : AppCompatActivity() {
   }
 
   override fun onStart() {
-    Toast.makeText(this, "*onStart: count $oneTime", Toast.LENGTH_LONG).show()
 
-    if (oneTime!! == 1) {
-      super.onBackPressed()
-      Toast.makeText(this, "*onStart", Toast.LENGTH_LONG).show()
-    }
+    Toast.makeText(this, "*onStart", Toast.LENGTH_LONG).show()
+    super.onBackPressed()
     super.onStart()
   }
 
@@ -61,25 +56,5 @@ class ShowLinkActivity : AppCompatActivity() {
   override fun onPause() {
     Toast.makeText(this, "*onPause", Toast.LENGTH_LONG).show()
     super.onPause()
-  }
-
-  var variable: Int = 0
-  override fun onBackPressed() {
-    if(webView!!.isFocused && webView!!.canGoBack()) {
-      Toast.makeText(this, "Herer =>>> comming back from website", Toast.LENGTH_LONG).show()
-
-      webView!!.goBack();// if there is previous page open it
-//    }
-
-//    if (variable == 1) {
-//      Toast.makeText(this, "this is comming back from website", Toast.LENGTH_LONG).show()
-//      super.onBackPressed()
-    }else {
-      Toast.makeText(this, "Press Back again if you Want to leave", Toast.LENGTH_LONG).show()
-//      variable = 1
-      super.onBackPressed()
-      finish();
-
-    }
   }
 }

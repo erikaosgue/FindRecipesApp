@@ -14,43 +14,46 @@ class MainActivity : AppCompatActivity() {
  		activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
  		setContentView(activityMainBinding.root)
 
-
 		val button = activityMainBinding.buttonGoToListRecipesActivityId
 
-
-
-		button.setOnClickListener{
+		button.setOnClickListener {
 			val ingredients = activityMainBinding.ingredientsTextId.text.toString()
 			val searchTerm = activityMainBinding.searchTermId.text.toString()
-			val parameters =  checkParameters(ingredients, searchTerm)
+			val parameters = checkParameters(ingredients, searchTerm)
+			if (parameters != "invalid") {
 
-			val intent = Intent(this, RecipeList::class.java).apply {
-				putExtra("parameters", parameters)
+				val intent = Intent(this, RecipeList::class.java).apply {
+					putExtra("parameters", parameters)
+				}
+				startActivity(intent)
 			}
-			startActivity(intent)
-
 		}
  	}
 	private fun checkParameters(ingredients: String, searchTerm: String): String {
 
+		val myRegex = "^[a-zA-Z, ]*$"
 		var parameters = ""
+
 		if (ingredients.isNotEmpty() && searchTerm.isNotEmpty()) {
-			if (searchTerm.matches("^[a-zA-Z]*$".toRegex()) && ingredients.matches("^[a-zA-Z]*$".toRegex()))
+			if (searchTerm.matches(myRegex.toRegex()) && ingredients.matches("^[a-zA-Z]*$".toRegex()))
 					parameters = "?i=$ingredients&q=$searchTerm"
 			else {
 				Toast.makeText(this, "Enter only Alpha chars", Toast.LENGTH_LONG).show()
+				parameters = "invalid"
 			}
 		} else if (searchTerm.isEmpty() && ingredients.isNotEmpty()) {
-			if (ingredients.matches("^[a-zA-Z]*$".toRegex()))
+			if (ingredients.matches(myRegex.toRegex()))
 				parameters = "?i=$ingredients"
 			else {
 				Toast.makeText(this, "Enter only Alpha chars", Toast.LENGTH_LONG).show()
+				parameters = "invalid"
 			}
 		} else if (searchTerm.isNotEmpty() && ingredients.isEmpty()) {
-				if (searchTerm.matches("^[a-zA-Z]*$".toRegex()))
+				if (searchTerm.matches(myRegex.toRegex()))
 					parameters = "?q=$searchTerm"
 				else {
 					Toast.makeText(this, "Enter only Alpha chars", Toast.LENGTH_LONG).show()
+					parameters = "invalid"
 				}
 		}
         return parameters
