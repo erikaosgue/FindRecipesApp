@@ -17,9 +17,11 @@ class MainActivity : AppCompatActivity() {
 		val button = activityMainBinding.buttonGoToListRecipesActivityId
 
 		button.setOnClickListener {
+
 			val ingredients = activityMainBinding.ingredientsTextId.text.toString()
 			val searchTerm = activityMainBinding.searchTermId.text.toString()
 			val parameters = checkParameters(ingredients, searchTerm)
+
 			if (parameters != "invalid") {
 
 				val intent = Intent(this, RecipeList::class.java).apply {
@@ -29,6 +31,9 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
  	}
+
+
+
 	private fun checkParameters(ingredients: String, searchTerm: String): String {
 
 		val myRegex = "^[a-zA-Z, ]*$"

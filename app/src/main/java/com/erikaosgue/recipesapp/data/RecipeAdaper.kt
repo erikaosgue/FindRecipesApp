@@ -2,6 +2,7 @@ package com.erikaosgue.recipesapp.data
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -79,8 +81,17 @@ class RecipeAdapter(private val context: Context, private val listRecipes: Array
 
 
             moreInfoButton.setOnClickListener {
-                val intent = Intent(context, ShowLinkActivity::class.java)
-                intent.putExtra("link", recipe.link)
+                //Ir a un otra actividad ShowLink y alli se carga
+                // implementa una webView cargando la Url
+
+                //NOTE:this method requires a lot of configuration for the webView
+                // val intent = Intent(context, ShowLinkActivity::class.java)
+                // intent.putExtra("link", recipe.link)
+                // context.startActivity(intent)
+
+                //Abrir navegador desde aqui con un intent
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(recipe.link)
                 context.startActivity(intent)
             }
         }

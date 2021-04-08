@@ -1,6 +1,5 @@
 package com.erikaosgue.recipesapp
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +21,7 @@ class RecipeList : AppCompatActivity() {
 
 
   var requestQueue: RequestQueue? = null
+  lateinit var url : String
 
   private var recyclerView: RecyclerView? = null
   var adapter: RecipeAdapter? = null
@@ -45,11 +45,13 @@ class RecipeList : AppCompatActivity() {
         val extras = intent.extras
         val parameters = extras?.get("parameters")
 
-        val url = "http://www.recipepuppy.com/api/$parameters"
+        url = "http://www.recipepuppy.com/api/$parameters"
 
 
         getRecipeList(url)
     }
+
+
 
     //Make the request
     private fun getRecipeList(url: String){
